@@ -29,9 +29,10 @@ async def login_google(request: Request):
     Inicia el flujo de autenticación con Google OAuth 2.0
     Redirige al usuario a la página de login de Google
     """
-    # Construir redirect_uri manualmente para Vercel
-    base_url = str(request.base_url).rstrip('/')
-    redirect_uri = f"{base_url}/api/auth/callback/google"
+    # Construir redirect_uri usando la URL base sin el root_path
+    scheme = request.url.scheme
+    netloc = request.url.netloc
+    redirect_uri = f"{scheme}://{netloc}/api/auth/callback/google"
     return await oauth.google.authorize_redirect(request, redirect_uri)
 
 
