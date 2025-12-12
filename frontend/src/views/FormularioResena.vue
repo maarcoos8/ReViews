@@ -66,7 +66,7 @@
                   @change="handleFileSelect"
                   style="display: none"
                 />
-                <ion-button @click="$refs.fileInput.click()" expand="block" fill="outline">
+                <ion-button @click="fileInput?.click()" expand="block" fill="outline">
                   <ion-icon :icon="imagesOutline" slot="start"></ion-icon>
                   Seleccionar Imágenes
                 </ion-button>

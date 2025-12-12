@@ -77,14 +77,12 @@ const agregarMarcadores = () => {
   if (!map) return;
 
   // Agregar nuevos marcadores
-  props.eventos.forEach((evento: Evento) => {
-    const marker = L.marker([evento.latitud, evento.longitud]).addTo(map!);
+  props.eventos.forEach((punto: PuntoMapa) => {
+    const marker = L.marker([punto.latitud, punto.longitud]).addTo(map!);
     marker.bindPopup(`
       <div>
-        <h3>${evento.nombre}</h3>
-        <p><strong>Organizador:</strong> ${evento.organizador}</p>
-        <p><strong>Fecha:</strong> ${new Date(evento.timestamp).toLocaleString()}</p>
-        <p><strong>Lugar:</strong> ${evento.lugar}</p>
+        <h3>${punto.nombre}</h3>
+        <p><strong>Dirección:</strong> ${punto.lugar || 'N/A'}</p>
       </div>
     `);
     markers.push(marker);
