@@ -1,0 +1,25 @@
+# Docker Compose para desarrollo del backend únicamente
+# Para desarrollo completo (backend + frontend), usar docker-compose.yml en la raíz del proyecto
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: reviews-backend-dev
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app/app
+    env_file:
+      - ./.env
+    environment:
+      - PYTHONPATH=/app
+    command:
+      - "uvicorn"
+      - "app.main:app"
+      - "--host"
+      - "0.0.0.0"
+      - "--port"
+      - "8000"
+      - "--reload"
